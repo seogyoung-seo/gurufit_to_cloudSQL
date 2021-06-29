@@ -5,14 +5,14 @@ view: es_member {
 
   dimension: address {
     group_label: "주소"
-    description: "주소"
+    label: "주소"
     type: string
     sql: ${TABLE}.address ;;
   }
 
   dimension: add1 {
     group_label: "주소"
-    description: "시도"
+    label: "시도"
     type: string
     sql:SUBSTRING_INDEX(${address}, ' ', 1)  ;;
     drill_fields: [add2]
@@ -20,7 +20,7 @@ view: es_member {
 
   dimension: add2 {
     group_label: "주소"
-    description: "시군구"
+    label: "시군구"
     type: string
     sql:SUBSTRING_INDEX(${address}, ' ', 2)  ;;
     drill_fields: [add1]
@@ -28,7 +28,7 @@ view: es_member {
 
   dimension: add_tier {
     group_label: "주소"
-    description: "서울/경기도/인천/부산/기타/알수없음"
+    label: "서울/경기도/인천/부산/기타/알수없음"
     type: string
     sql: case
         when SUBSTRING_INDEX(${address}, ' ', 1)='경기도' then '2경기도'
@@ -43,27 +43,27 @@ view: es_member {
 
   dimension: address_sub {
     group_label: "주소"
-    description: "상세주소"
+    label: "상세주소"
     type: string
     sql: ${TABLE}.addressSub ;;
   }
 
   dimension: zipcode {
     group_label: "주소"
-    description: "우편번호"
+    label: "우편번호"
     type: zipcode
     sql: ${TABLE}.zipcode ;;
   }
 
   dimension: zonecode {
     group_label: "주소"
-    description: "우편번호(5자리)"
+    label: "우편번호(5자리)"
     type: string
     sql: ${TABLE}.zonecode ;;
   }
 
   dimension_group: birth_dt {
-    description: "생년월일"
+    label: "생년월일"
     type: time
     timeframes: [
       raw,
@@ -80,7 +80,7 @@ view: es_member {
 
 
   dimension_group: entry_dt {
-    description: "가입일"
+    label: "가입일"
     type: time
     timeframes: [
       raw,
@@ -95,7 +95,7 @@ view: es_member {
   }
 
   dimension_group: last_login_dt {
-    description: "최종로그인"
+    label: "최종로그인"
     type: time
     timeframes: [
       raw,
@@ -110,7 +110,7 @@ view: es_member {
   }
 
   dimension_group: last_sale_dt {
-    description: "최종구매일"
+    label: "최종구매일"
     type: time
     timeframes: [
       raw,
@@ -126,7 +126,7 @@ view: es_member {
 
 
   dimension_group: reg_dt {
-    description: "등록일"
+    label: "등록일"
     type: time
     timeframes: [
       raw,
@@ -144,7 +144,7 @@ view: es_member {
 ############################################################################# 개인정보
   dimension: mem_no {
     group_label: "개인정보"
-    description: "회원번호"
+    label: "회원번호"
     primary_key: yes
     type: number
     sql: ${TABLE}.memNo ;;
@@ -152,42 +152,42 @@ view: es_member {
 
   dimension: mem_pw {
     group_label: "개인정보"
-    description: "비밀번호"
+    label: "비밀번호"
     type: string
     sql: ${TABLE}.memPw ;;
   }
 
   dimension: nick_nm {
     group_label: "개인정보"
-    description: "닉네임"
+    label: "닉네임"
     type: string
     sql: ${TABLE}.nickNm ;;
   }
 
   dimension: mem_id {
     group_label: "개인정보"
-    description: "아이디"
+    label: "아이디"
     type: string
     sql: ${TABLE}.memId ;;
   }
 
   dimension: mem_nm {
     group_label: "개인정보"
-    description: "이름"
+    label: "이름"
     type: string
     sql: ${TABLE}.memNm ;;
   }
 
   dimension: cell_phone {
     group_label: "개인정보"
-    description: "핸드폰"
+    label: "핸드폰"
     type: string
     sql: ${TABLE}.cellPhone ;;
   }
 
   dimension: email {
     group_label: "개인정보"
-    description: "이메일"
+    label: "이메일"
     type: string
     sql: ${TABLE}.email ;;
   }
@@ -195,13 +195,13 @@ view: es_member {
 
   dimension: phone {
     group_label: "개인정보"
-    description: "전화번호"
+    label: "전화번호"
     type: string
     sql: ${TABLE}.phone ;;
   }
   dimension: sex_fl {
     group_label: "개인정보"
-    description: "성별"
+    label: "성별"
     type: string
     sql: case
         when ${TABLE}.sexFl='m' then '1남성'
@@ -211,14 +211,14 @@ view: es_member {
 
     dimension: age {
       group_label: "개인정보"
-      description: "나이"
+      label: "나이"
       type: number
       sql: substring(now(),1,4)-substring(${birth_dt_date},1,4)+1 ;;
     }
 
     dimension: entry_path {
       group_label: "개인정보"
-      description: "가입경로"
+      label: "가입경로"
       type: string
       sql: ${TABLE}.entryPath ;;
     }
@@ -226,14 +226,14 @@ view: es_member {
 
     dimension: group_sno {
       group_label: "개인정보"
-      description: "회원등급sno"
+      label: "회원등급sno"
       type: number
       sql: ${TABLE}.groupSno ;;
     }
 
     dimension: rncheck {
       group_label: "개인정보"
-      description: "본인확인방법"
+      label: "본인확인방법"
       type: string
       sql: ${TABLE}.rncheck ;;
     }
@@ -241,14 +241,14 @@ view: es_member {
 #############################################################################추천인
     dimension: recomm_fl {
       group_label: "추천인"
-      description: "추천인등록여부"
+      label: "추천인등록여부"
       type: string
       sql: ${TABLE}.recommFl ;;
     }
 
     dimension: recomm_id {
       group_label: "추천인"
-      description: "추천인id"
+      label: "추천인id"
       type: string
       sql: ${TABLE}.recommId ;;
     }
@@ -256,21 +256,21 @@ view: es_member {
 #############################################################################로그인 관련 정보
     dimension: login_cnt {
       group_label: "로그인 관련 정보"
-      description: "로그인횟수"
+      label: "로그인횟수"
       type: number
       sql: ${TABLE}.loginCnt ;;
     }
 
     dimension: login_limit {
       group_label: "로그인 관련 정보"
-      description: "로그인제한"
+      label: "로그인제한"
       type: string
       sql: ${TABLE}.loginLimit ;;
     }
 
     dimension: last_login_ip {
       group_label: "로그인 관련 정보"
-      description: "최종로그인IP"
+      label: "최종로그인IP"
       type: string
       sql: ${TABLE}.lastLoginIp ;;
     }
@@ -278,41 +278,41 @@ view: es_member {
 ############################################################################# 구매관련 정보
     dimension: mileage {
       group_label: "구매 관련 정보"
-      description: "적립금"
+      label: "적립금"
       type: number
       sql: ${TABLE}.mileage ;;
     }
 
     dimension: sale_amt {
       group_label: "구매 관련 정보"
-      description: "총구매금액"
+      label: "총구매금액"
       type: number
       sql: ${TABLE}.saleAmt ;;
     }
 
     dimension: sale_cnt {
       group_label: "구매 관련 정보"
-      description: "구매횟수"
+      label: "구매횟수"
       type: number
       sql: ${TABLE}.saleCnt ;;
     }
     dimension: deposit {
       group_label: "구매 관련 정보"
-      description: "예치금"
+      label: "예치금"
       type: number
       sql: ${TABLE}.deposit ;;
     }
 
     dimension: sale_yn{
       group_label: "구매 관련 정보"
-      description: "구매여부(구매확정건만)"
+      label: "구매여부(구매확정건만)"
       type: yesno
       sql: ${sale_cnt} >= '1' ;;
     }
 
     dimension: first_order {
       group_label: "구매 관련 정보"
-      description: "첫 구매까지 걸린 시간"
+      label: "첫 구매까지 걸린 시간"
       type: string
       sql: DATEDIFF(${es_order_goods.payment_dt_date},${reg_dt_date}) ;;
     }
@@ -321,35 +321,35 @@ view: es_member {
 #############################################################################yesno
     dimension: mailling_fl {
       group_label: "yesno"
-      description: "메일수신여부"
+      label: "메일수신여부"
       type: string
       sql: ${TABLE}.maillingFl ;;
     }
 
     dimension: sleep_fl {
       group_label: "yesno"
-      description: "휴면회원여부"
+      label: "휴면회원여부"
       type: string
       sql: ${TABLE}.sleepFl ;;
     }
 
     dimension: sleep_mail_fl {
       group_label: "yesno"
-      description: "휴면전환안내메일발송여부"
+      label: "휴면전환안내메일발송여부"
       type: string
       sql: ${TABLE}.sleepMailFl ;;
     }
 
     dimension: sleep_sms_fl {
       group_label: "yesno"
-      description: "휴면전환안내SMS발송여부"
+      label: "휴면전환안내SMS발송여부"
       type: string
       sql: ${TABLE}.sleepSmsFl ;;
     }
 
     dimension: sms_fl {
       group_label: "yesno"
-      description: "SMS수신여부"
+      label: "SMS수신여부"
       type: string
       sql: ${TABLE}.smsFl ;;
     }
@@ -553,35 +553,35 @@ view: es_member {
 
     dimension: com_address {
       hidden: yes
-      description: "사업장주소"
+      label: "사업장주소"
       type: string
       sql: ${TABLE}.comAddress ;;
     }
 
     dimension: com_address_sub {
       hidden: yes
-      description: "사업장상세주소"
+      label: "사업장상세주소"
       type: string
       sql: ${TABLE}.comAddressSub ;;
     }
 
     dimension: com_zipcode {
       hidden: yes
-      description: "사업장우편번호"
+      label: "사업장우편번호"
       type: string
       sql: ${TABLE}.comZipcode ;;
     }
 
     dimension: com_zonecode {
       hidden: yes
-      description: "사업장 우편번호(5자리)"
+      label: "사업장 우편번호(5자리)"
       type: string
       sql: ${TABLE}.comZonecode ;;
     }
 
     dimension: company {
       hidden: yes
-      description: "회사명"
+      label: "회사명"
       type: string
       sql: ${TABLE}.company ;;
     }
@@ -625,14 +625,14 @@ view: es_member {
 
     dimension: admin_memo {
       hidden: yes
-      description: "관리자 메모"
+      label: "관리자 메모"
       type: string
       sql: ${TABLE}.adminMemo ;;
     }
 
     dimension_group: adult_confirm_dt {
       hidden: yes
-      description: "성인여부인증시간"
+      label: "성인여부인증시간"
       type: time
       timeframes: [
         raw,
@@ -648,21 +648,21 @@ view: es_member {
 
     dimension: adult_fl {
       hidden: yes
-      description: "성인여부"
+      label: "성인여부"
       type: string
       sql: ${TABLE}.adultFl ;;
     }
 
     dimension: app_fl {
       hidden: yes
-      description: "승인여부"
+      label: "승인여부"
       type: string
       sql: ${TABLE}.appFl ;;
     }
 
     dimension_group: group_mod_dt {
       hidden: no
-      description: "등급수정일"
+      label: "등급수정일"
       type: time
       timeframes: [
         raw,
@@ -678,7 +678,7 @@ view: es_member {
 
     dimension_group: group_valid_dt {
       hidden: yes
-      description: "등급유효일"
+      label: "등급유효일"
       type: time
       timeframes: [
         raw,
@@ -694,7 +694,7 @@ view: es_member {
 
     dimension_group: guide_password_dt {
       hidden: yes
-      description: "비밀번호변경안내일"
+      label: "비밀번호변경안내일"
       type: time
       timeframes: [
         raw,
@@ -711,7 +711,7 @@ view: es_member {
 
     dimension_group: approval_dt {
       hidden: yes
-      description: "가입 승인 일"
+      label: "가입 승인 일"
       type: time
       timeframes: [
         raw,
@@ -726,7 +726,7 @@ view: es_member {
     }
     dimension_group: birth_event_fl {
       hidden: yes
-      description: "생일 이벤트 여부 - sms,쿠폰 등 처리일자"
+      label: "생일 이벤트 여부 - sms,쿠폰 등 처리일자"
       type: time
       timeframes: [
         raw,
@@ -744,7 +744,7 @@ view: es_member {
 
     dimension_group: change_password_dt {
       hidden: yes
-      description: "비밀번호변경일"
+      label: "비밀번호변경일"
       type: time
       timeframes: [
         raw,
@@ -760,7 +760,7 @@ view: es_member {
 
     dimension_group: entry_benefit_offer_dt {
       hidden: yes
-      description: "가입혜택지급일"
+      label: "가입혜택지급일"
       type: time
       timeframes: [
         raw,
@@ -776,7 +776,7 @@ view: es_member {
 
     dimension_group: mod_dt {
       hidden: yes
-      description: "수정일"
+      label: "수정일"
       type: time
       timeframes: [
         raw,
@@ -792,14 +792,14 @@ view: es_member {
 
     dimension: busi_no {
       hidden: yes
-      description: "사업자 번호"
+      label: "사업자 번호"
       type: string
       sql: ${TABLE}.busiNo ;;
     }
 
     dimension: calendar_fl {
       hidden: yes
-      description: "양력,음력"
+      label: "양력,음력"
       type: string
       sql: ${TABLE}.calendarFl ;;
     }
@@ -813,21 +813,21 @@ view: es_member {
 
     dimension: ceo {
       hidden: yes
-      description: "대표자"
+      label: "대표자"
       type: string
       sql: ${TABLE}.ceo ;;
     }
 
     dimension: dupeinfo {
       hidden: yes
-      description: "중복가입확인정보"
+      label: "중복가입확인정보"
       type: string
       sql: ${TABLE}.dupeinfo ;;
     }
 
     dimension_group: marri {
       hidden: yes
-      description: "결혼기념일"
+      label: "결혼기념일"
       type: time
       timeframes: [
         raw,
@@ -844,21 +844,21 @@ view: es_member {
 
     dimension: marri_fl {
       hidden: yes
-      description: "결혼여부"
+      label: "결혼여부"
       type: string
       sql: ${TABLE}.marriFl ;;
     }
 
     dimension: job {
       hidden: yes
-      description: "직업"
+      label: "직업"
       type: string
       sql: ${TABLE}.job ;;
     }
 
     dimension: expiration_fl {
       hidden: yes
-      description: "개인정보유효기간"
+      label: "개인정보유효기간"
       type: string
       sql: ${TABLE}.expirationFl ;;
     }
@@ -877,14 +877,14 @@ view: es_member {
 
     dimension: interest {
       hidden: yes
-      description: "관심분야"
+      label: "관심분야"
       type: string
       sql: ${TABLE}.interest ;;
     }
 
     dimension: item {
       hidden: yes
-      description: "종목"
+      label: "종목"
       type: string
       sql: ${TABLE}.item ;;
     }
@@ -898,35 +898,35 @@ view: es_member {
 
     dimension: member_fl {
       hidden: yes
-      description: "회원구분"
+      label: "회원구분"
       type: string
       sql: ${TABLE}.memberFl ;;
     }
 
     dimension: memo {
       hidden: yes
-      description: "남기는말"
+      label: "남기는말"
       type: string
       sql: ${TABLE}.memo ;;
     }
 
     dimension: pakey {
       hidden: yes
-      description: "가상번호"
+      label: "가상번호"
       type: string
       sql: ${TABLE}.pakey ;;
     }
 
     # dimension: re_entry_fl {
     #   hidden: yes
-    #   description: "재가입여부"
+    #   label: "재가입여부"
     #   type: string
     #   sql: ${TABLE}.reEntryFl ;;
     # }
 
     # dimension: service {
     #   hidden: yes
-    #   description: "업태"
+    #   label: "업태"
     #   type: string
     #   sql: ${TABLE}.service ;;
     # }

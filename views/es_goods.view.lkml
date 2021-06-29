@@ -2,26 +2,26 @@ view: es_goods {
   sql_table_name: gurufit_to_looker.es_goods ;;
 
   dimension: goods_no {
-    description: "상품 번호"
+    label: "상품 번호"
     primary_key: yes
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
 
   dimension: goods_nm {
-    description: "상품 이름"
+    label: "상품 이름"
     type: string
     sql: ${TABLE}.goodsNm ;;
   }
 
   dimension: goods_brand {
-    description: "브랜드"
+    label: "브랜드"
     type: string
     sql: SUBSTRING_INDEX(${goods_nm}, ' ', 1) ;;
   }
 
   dimension: goods_sell_fl {
-    description: "상품판매 여부(y/n)"
+    label: "상품판매 여부(y/n)"
     type: string
     sql: ${TABLE}.goodsSellFl ;;
   }
@@ -29,7 +29,7 @@ view: es_goods {
 ############################################################################# 영업 이익률 관련 지표
   dimension: brandcate_cd {
     hidden: no
-    description: "브랜드 카테고리 코드"
+    label: "브랜드 카테고리 코드"
     type: string
     sql: case
           when ${es_order_goods.goods_no} in ("1000002601","1000002605","1000002640","1000002638","1000002641","1000002604","1000002642","1000002602","1000002603") then "GB"
@@ -39,7 +39,7 @@ view: es_goods {
   }
 
   dimension: purchase_no {
-    description: "매입처 번호"
+    label: "매입처 번호"
     hidden: no
     type: number
     sql: case

@@ -10,21 +10,21 @@ view: es_order_info {
   }
   dimension: order_no {
     group_label: "주문 정보"
-    description: "주문번호"
+    label: "주문번호"
     type: string
     sql: ${TABLE}.orderNo ;;
   }
 
   dimension: order_memo {
     group_label: "주문 정보"
-    description: "주문시 남기는 글"
+    label: "주문시 남기는 글"
     type: string
     sql: ${TABLE}.orderMemo ;;
   }
 
   dimension: packet_code {
     group_label: "주문 정보"
-    description: "묶음배송코드"
+    label: "묶음배송코드"
     type: string
     sql: ${TABLE}.packetCode ;;
   }
@@ -34,27 +34,27 @@ view: es_order_info {
 
   dimension: order_cell_phone {
     group_label: "주문자 개인정보"
-    description: "주문자 핸드폰 번호"
+    label: "주문자 핸드폰 번호"
     type: string
     sql: ${TABLE}.orderCellPhone ;;
   }
 
   dimension: order_email {
     group_label: "주문자 개인정보"
-    description: "주문자 e-mail"
+    label: "주문자 e-mail"
     type: string
     sql: ${TABLE}.orderEmail ;;
   }
 
   dimension: order_name {
     group_label: "주문자 개인정보"
-    description: "주문자 이름"
+    label: "주문자 이름"
     type: string
     sql: ${TABLE}.orderName ;;
   }
   dimension: order_phone {
     group_label: "주문자 개인정보"
-    description: "주문자 전화번호"
+    label: "주문자 전화번호"
     type: string
     sql: ${TABLE}.orderPhone ;;
   }
@@ -63,28 +63,28 @@ view: es_order_info {
 ############################################################################# 주문자 지역
   dimension: order_address {
     group_label: "주문자 지역"
-    description: "주문자 주소"
+    label: "주문자 주소"
     type: string
     sql: ${TABLE}.orderAddress ;;
   }
 
   dimension: order_address_sub {
     group_label: "주문자 지역"
-    description: "주문자 나머지 주소"
+    label: "주문자 나머지 주소"
     type: string
     sql: ${TABLE}.orderAddressSub ;;
   }
 
   dimension: order_city {
     group_label: "주문자 지역"
-    description: "주문자 도시"
+    label: "주문자 도시"
     type: string
     sql: ${TABLE}.orderCity ;;
   }
 
   dimension: order_zipcode {
     group_label: "주문자 지역"
-    description: "주문자 우편번호"
+    label: "주문자 우편번호"
 
     type: string
     sql: ${TABLE}.orderZipcode ;;
@@ -92,14 +92,14 @@ view: es_order_info {
 
   dimension: order_zonecode {
     group_label: "주문자 지역"
-    description: "주문자 우편번호(10자리)"
+    label: "주문자 우편번호(10자리)"
     type: string
     sql: ${TABLE}.orderZonecode ;;
   }
 
   dimension: order_state {
     group_label: "주문자 지역"
-    description: "주문자 주/지방/지역"
+    label: "주문자 주/지방/지역"
     type: string
     sql: ${TABLE}.orderState ;;
   }
@@ -107,14 +107,14 @@ view: es_order_info {
 ############################################################################# 수취인 개인정보
   dimension: receiver_use_safe_number_fl {
     group_label: "수취인 개인정보"
-    description: "수취인 안심번호 사용여부(n:미사용, y:사용, w:발급대기, c:사용해지)"
+    label: "수취인 안심번호 사용여부(n:미사용, y:사용, w:발급대기, c:사용해지)"
     type: string
     sql: ${TABLE}.receiverUseSafeNumberFl ;;
   }
 
   dimension: receiver_cell_phone {
     group_label: "수취인 개인정보"
-    description: "수취인 핸드폰 번호"
+    label: "수취인 핸드폰 번호"
     type: string
     sql: ${TABLE}.receiverCellPhone ;;
   }
@@ -122,14 +122,14 @@ view: es_order_info {
 
   dimension: receiver_name {
     group_label: "수취인 개인정보"
-    description: "수취인 이름"
+    label: "수취인 이름"
     type: string
     sql: ${TABLE}.receiverName ;;
   }
 
   dimension: receiver_phone {
     group_label: "수취인 개인정보"
-    description: "수취인 전화번호"
+    label: "수취인 전화번호"
     type: string
     sql: ${TABLE}.receiverPhone ;;
   }
@@ -137,7 +137,7 @@ view: es_order_info {
 
   dimension: receiver_safe_number {
     group_label: "수취인 개인정보"
-    description: "수취인 안심번호"
+    label: "수취인 안심번호"
     type: string
     sql: ${TABLE}.receiverSafeNumber ;;
   }
@@ -149,7 +149,7 @@ view: es_order_info {
 
   dimension: add_tier {
     group_label: "수취인 지역"
-    description: "배송지 그룹"
+    label: "배송지 그룹"
     type: string
     sql: case
         when SUBSTRING_INDEX(${receiver_address}, ' ', 1)='경기도' then '경기도'
@@ -170,61 +170,61 @@ view: es_order_info {
 
   dimension: add1 {
     group_label: "수취인 지역"
-    description: "시도"
+    label: "시도"
     type: string
     sql:SUBSTRING_INDEX(${receiver_address}, ' ', 1)  ;;
   }
 
   dimension: add2 {
     group_label: "수취인 지역"
-    description: "시군구"
+    label: "시군구"
     type: string
     sql:SUBSTRING_INDEX(SUBSTRING_INDEX(${receiver_address}, ' ', 2),' ', -1)  ;;
   }
   dimension: receiver_address {
     group_label: "수취인 지역"
-    description: "수취인 주소"
+    label: "수취인 주소"
     type: string
     sql: ${TABLE}.receiverAddress ;;
   }
 
   dimension: receiver_address_sub {
     group_label: "수취인 지역"
-    description: "수취인 상세주소"
+    label: "수취인 상세주소"
     type: string
     sql: ${TABLE}.receiverAddressSub ;;
   }
 
   dimension: receiver_zipcode {
     group_label: "수취인 지역"
-    description: "수취인 우편번호"
+    label: "수취인 우편번호"
     type: string
     sql: ${TABLE}.receiverZipcode ;;
   }
 
   dimension: receiver_zonecode {
     group_label: "수취인 지역"
-    description: "수취인 우편번호(10자리)"
+    label: "수취인 우편번호(10자리)"
     type: string
     sql: ${TABLE}.receiverZonecode ;;
   }
 
   dimension: receiver_city {
     group_label: "수취인 지역"
-    description: "수취인 도시"
+    label: "수취인 도시"
     type: string
     sql: ${TABLE}.receiverCity ;;
   }
 
   dimension: receiver_state {
     group_label: "수취인 지역"
-    description: "수취인 주/지방/지역"
+    label: "수취인 주/지방/지역"
     type: string
     sql: ${TABLE}.receiverState ;;
   }
 
   dimension_group: mod_dt {
-    description: "수정일"
+    label: "수정일"
     type: time
     timeframes: [
       raw,
@@ -239,7 +239,7 @@ view: es_order_info {
   }
 
   dimension_group: receiver_safe_number_dt {
-    description: "수취인 안심번호 발급일자"
+    label: "수취인 안심번호 발급일자"
     type: time
     timeframes: [
       raw,
@@ -254,7 +254,7 @@ view: es_order_info {
   }
 
   dimension_group: reg_dt {
-    description: "등록일"
+    label: "등록일"
     type: time
     timeframes: [
       raw,

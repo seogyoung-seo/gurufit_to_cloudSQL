@@ -3,33 +3,33 @@ view: es_order {
 
 
   dimension: event_coupon_fl {
-    description: "구매 쿠폰 지급여부"
+    label: "구매 쿠폰 지급여부"
     type: string
     sql: ${TABLE}.eventCouponFl ;;
   }
 
 
   dimension: first_coupon_fl {
-    description: "첫구매 쿠폰 지급 여부"
+    label: "첫구매 쿠폰 지급 여부"
     type: string
     sql: ${TABLE}.firstCouponFl ;;
   }
 
   dimension: first_sale_fl {
-    description: "첫 구매 여부"
+    label: "첫 구매 여부"
     type: string
     sql: ${TABLE}.firstSaleFl ;;
   }
 
   dimension: mem_no {
-    description: "회원 번호"
+    label: "회원 번호"
     type: number
     sql: ${TABLE}.memNo ;;
   }
 
 
   dimension_group: mod_dt {
-    description: "수정일"
+    label: "수정일"
     type: time
     timeframes: [
       raw,
@@ -45,49 +45,49 @@ view: es_order {
 
   dimension: multi_shipping_fl {
     hidden: yes
-    description: "복수배송지 사용여부"
+    label: "복수배송지 사용여부"
     type: string
     sql: ${TABLE}.multiShippingFl ;;
   }
 
   dimension: order_channel_fl {
-    description: "주문채널"
+    label: "주문채널"
     type: string
     sql: ${TABLE}.orderChannelFl ;;
   }
 
   dimension: order_email {
-    description: "비회원 이메일"
+    label: "비회원 이메일"
     type: string
     sql: ${TABLE}.orderEmail ;;
   }
 
   dimension: order_goods_cnt {
-    description: "주문 상품 갯수"
+    label: "주문 상품 갯수"
     type: number
     sql: ${TABLE}.orderGoodsCnt ;;
   }
 
   dimension: order_goods_nm {
-    description: "주문 상품명"
+    label: "주문 상품명"
     type: string
     sql: ${TABLE}.orderGoodsNm ;;
   }
 
   dimension: order_goods_nm_standard {
-    description: "주문 상품명(기준월)"
+    label: "주문 상품명(기준월)"
     type: string
     sql: ${TABLE}.orderGoodsNmStandard ;;
   }
 
   dimension: order_ip {
-    description: "주문자 IP"
+    label: "주문자 IP"
     type: string
     sql: ${TABLE}.orderIp ;;
   }
 
   dimension: order_no {
-    description: "주문번호"
+    label: "주문번호"
     primary_key: yes
     type: string
     sql: ${TABLE}.orderNo ;;
@@ -95,13 +95,13 @@ view: es_order {
 
 
   dimension: order_status {
-    description: "주문상태"
+    label: "주문상태"
     type: string
     sql: ${TABLE}.orderStatus ;;
   }
 
   dimension: order_type_fl {
-    description: "주문 유형 (모바일,PC,수기)"
+    label: "주문 유형 (모바일,PC,수기)"
     type: string
     sql: ${TABLE}.orderTypeFl ;;
   }
@@ -117,7 +117,7 @@ view: es_order {
   }
 
   dimension_group: payment_dt {
-    description: "입금일자"
+    label: "입금일자"
     type: time
     timeframes: [
       raw,
@@ -133,33 +133,33 @@ view: es_order {
 
   dimension: real_tax_free_price {
     hidden: yes
-    description: "실제 총 면세 금액(환불제외)"
+    label: "실제 총 면세 금액(환불제외)"
     type: number
     sql: ${TABLE}.realTaxFreePrice ;;
   }
 
   dimension: real_tax_supply_price {
     hidden: yes
-    description: "실제 총 과세금액(환불제외)"
+    label: "실제 총 과세금액(환불제외)"
     type: number
     sql: ${TABLE}.realTaxSupplyPrice ;;
   }
 
   dimension: real_tax_vat_price {
     hidden: yes
-    description: "실제 총 부가세(환불제외)"
+    label: "실제 총 부가세(환불제외)"
     type: number
     sql: ${TABLE}.realTaxVatPrice ;;
   }
 
   dimension: receipt_fl {
-    description: "영수증 신청여부"
+    label: "영수증 신청여부"
     type: string
     sql: ${TABLE}.receiptFl ;;
   }
 
   dimension_group: reg_dt {
-    description: "등록일"
+    label: "등록일"
     type: time
     timeframes: [
       raw,
@@ -181,13 +181,13 @@ view: es_order {
   }
 
   dimension: send_mail_sms_fl {
-    description: "메일/SMS 전송 여부"
+    label: "메일/SMS 전송 여부"
     type: string
     sql: ${TABLE}.sendMailSmsFl ;;
   }
 
   dimension: settle_kind {
-    description: "주문방법"
+    label: "주문방법"
     type: string
     sql: case when ${TABLE}.settleKind='eb' then '에스크로 계좌이체'
           when ${TABLE}.settleKind='ec' then '에스크로 신용카드'
@@ -210,168 +210,168 @@ view: es_order {
     }
 
     dimension: settle_price {
-      description: "총 주문 금액"
+      label: "총 주문 금액"
       type: number
       sql: ${TABLE}.settlePrice ;;
     }
 
     dimension: status_policy {
-      description: "주문상태 정책"
+      label: "주문상태 정책"
       type: string
       sql: ${TABLE}.statusPolicy ;;
     }
 
     dimension: tax_free_price {
       hidden: yes
-      description: "최초 총 면세 금액"
+      label: "최초 총 면세 금액"
       type: number
       sql: ${TABLE}.taxFreePrice ;;
     }
 
     dimension: tax_supply_price {
       hidden: yes
-      description: "최초 총 과세 금액"
+      label: "최초 총 과세 금액"
       type: number
       sql: ${TABLE}.taxSupplyPrice ;;
     }
 
     dimension: tax_vat_price {
       hidden: yes
-      description: "최초 총 부가세 금액"
+      label: "최초 총 부가세 금액"
       type: number
       sql: ${TABLE}.taxVatPrice ;;
     }
 
     dimension: total_coupon_delivery_dc_price {
       hidden: yes
-      description: "총 배송 쿠폰 할인 금액"
+      label: "총 배송 쿠폰 할인 금액"
       type: number
       sql: ${TABLE}.totalCouponDeliveryDcPrice ;;
     }
 
     dimension: total_coupon_goods_dc_price {
-      description: "총 상품 쿠폰 할인 금액"
+      label: "총 상품 쿠폰 할인 금액"
       type: number
       sql: ${TABLE}.totalCouponGoodsDcPrice ;;
     }
 
     dimension: total_coupon_goods_mileage {
-      description: "총 상품쿠폰 적립 마일리지"
+      label: "총 상품쿠폰 적립 마일리지"
       type: number
       sql: ${TABLE}.totalCouponGoodsMileage ;;
     }
 
     dimension: total_coupon_order_dc_price {
-      description: "총 주문 쿠폰 할인 금액"
+      label: "총 주문 쿠폰 할인 금액"
       type: number
       sql: ${TABLE}.totalCouponOrderDcPrice ;;
     }
 
     dimension: total_coupon_order_mileage {
-      description: "총 주문쿠폰 적립 마일리지"
+      label: "총 주문쿠폰 적립 마일리지"
       type: number
       sql: ${TABLE}.totalCouponOrderMileage ;;
     }
 
     dimension: total_delivery_charge {
-      description: "총 배송비"
+      label: "총 배송비"
       type: number
       sql: ${TABLE}.totalDeliveryCharge ;;
     }
 
     dimension: total_delivery_insurance_fee {
       hidden: yes
-      description: "해외배송 EMS 보험료"
+      label: "해외배송 EMS 보험료"
       type: number
       sql: ${TABLE}.totalDeliveryInsuranceFee ;;
     }
 
     dimension: total_delivery_weight {
-      description: "배송 총 무게"
+      label: "배송 총 무게"
       type: number
       sql: ${TABLE}.totalDeliveryWeight ;;
     }
 
     dimension: total_enuri_dc_price {
-      description: "총 운영자 추가할인"
+      label: "총 운영자 추가할인"
       type: number
       sql: ${TABLE}.totalEnuriDcPrice ;;
     }
 
     dimension: total_goods_dc_price {
-      description: "총 상품 할인금액"
+      label: "총 상품 할인금액"
       type: number
       sql: ${TABLE}.totalGoodsDcPrice ;;
     }
 
     dimension: total_goods_mileage {
-      description: "총 상품 적립 마일리지"
+      label: "총 상품 적립 마일리지"
       type: number
       sql: ${TABLE}.totalGoodsMileage ;;
     }
 
     dimension: total_goods_price {
-      description: "총 상품 금액"
+      label: "총 상품 금액"
       type: number
       sql: ${TABLE}.totalGoodsPrice ;;
     }
 
     dimension: total_member_dc_price {
-      description: "총 회원 할인 금액"
+      label: "총 회원 할인 금액"
       type: number
       sql: ${TABLE}.totalMemberDcPrice ;;
     }
 
     dimension: total_member_delivery_dc_price {
-      description: "회원 배송비 무료"
+      label: "회원 배송비 무료"
       type: number
       sql: ${TABLE}.totalMemberDeliveryDcPrice ;;
     }
 
     dimension: total_member_mileage {
-      description: "총 회원 적립 마일리지"
+      label: "총 회원 적립 마일리지"
       type: number
       sql: ${TABLE}.totalMemberMileage ;;
     }
 
     dimension: total_member_overlap_dc_price {
-      description: "총 그룹별 회원 중복 할인 금액"
+      label: "총 그룹별 회원 중복 할인 금액"
       type: number
       sql: ${TABLE}.totalMemberOverlapDcPrice ;;
     }
 
     dimension: total_mileage {
-      description: "총 적립 마일리지"
+      label: "총 적립 마일리지"
       type: number
       sql: ${TABLE}.totalMileage ;;
     }
 
     dimension: tracking_key {
-      description: "페이코 쇼핑 트래킹 키"
+      label: "페이코 쇼핑 트래킹 키"
       type: string
       sql: ${TABLE}.trackingKey ;;
     }
 
     dimension: use_deposit {
-      description: "주문시 사용한 예치금"
+      label: "주문시 사용한 예치금"
       type: number
       sql: ${TABLE}.useDeposit ;;
     }
 
     dimension: use_mileage {
-      description: "주문시 사용한 마일리지"
+      label: "주문시 사용한 마일리지"
       type: number
       sql: ${TABLE}.useMileage ;;
     }
 
     dimension: user_consult_memo {
-      description: "고객상담메모(관리자용메모)"
+      label: "고객상담메모(관리자용메모)"
       type: string
       sql: ${TABLE}.userConsultMemo ;;
     }
 
     dimension: user_request_memo {
-      description: "고객요청메모(관리자용메모)"
+      label: "고객요청메모(관리자용메모)"
       type: string
       sql: ${TABLE}.userRequestMemo ;;
     }

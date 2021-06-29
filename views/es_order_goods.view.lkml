@@ -6,34 +6,34 @@ view: es_order_goods {
   #dimension: performance_filter {
   # hidden: yes
   #group_label: "주문 정보"
-  #description: "주문 상태 필터"
+  #label: "주문 상태 필터"
   #type: yesno
   #sql: ${order_status} in ("p1","g1","d1","d2","s1","b3","b1","b2","b4","r3","r2","r1","z1","z2","z3","z4","z5") ;;
   #}
 
   dimension: order_no {
     group_label: "주문 정보"
-    description: "주문번호"
+    label: "주문번호"
     type: string
     sql: ${TABLE}.orderNo ;;
   }
 
   dimension: plus_yesno {
     group_label: "주문 정보"
-    description: "플러스 회원권 구매 이후 구매"
+    label: "플러스 회원권 구매 이후 구매"
     type: yesno
     sql: ${payment_dt_date}> DATE_ADD(${es_member.group_mod_dt_date}, INTERVAL -1 DAY) ;;
   }
   dimension: order_status {
     group_label: "주문 정보"
-    description: "주문 상태"
+    label: "주문 상태"
     type: string
     sql: ${TABLE}.orderStatus ;;
   }
 
   dimension: order_type {
     group_label: "주문 정보"
-    description: "주문 유형(일반/교환)"
+    label: "주문 유형(일반/교환)"
     type: string
     sql:
     case when ${handle_sno}>0 and ${order_status} in ("p1","g1","d1","d2","s1") then "교환"
@@ -43,7 +43,7 @@ view: es_order_goods {
 
   dimension: sno {
     group_label: "주문 정보"
-    description: "일련번호"
+    label: "일련번호"
     primary_key: yes
     type: number
     sql: ${TABLE}.sno ;;
@@ -51,14 +51,14 @@ view: es_order_goods {
 
   dimension: order_cd {
     group_label: "주문 정보"
-    description: "주문 코드(순서)"
+    label: "주문 코드(순서)"
     type: number
     sql: ${TABLE}.orderCd ;;
   }
 
   dimension: goods_cnt {
     group_label: "주문 정보"
-    description: "상품 수량"
+    label: "상품 수량"
     type: number
     sql: ${TABLE}.goodsCnt ;;
   }
@@ -115,7 +115,7 @@ view: es_order_goods {
 
   dimension: sale_cate {
     group_label: "상품 정보"
-    description: "일반 / 타임세일 / SALE / 회원권 + 플러스존"
+    label: "일반 / 타임세일 / SALE / 회원권 + 플러스존"
     type: string
     sql: case when ${time_sale_fl}='y' then "타임세일"
         when ${cate_cd}='010' then "SALE"
@@ -127,28 +127,28 @@ view: es_order_goods {
 
   dimension: brand_cd {
     group_label: "상품 정보"
-    description: "브랜드 코드"
+    label: "브랜드 코드"
     type: string
     sql: ${TABLE}.brandCd ;;
   }
 
   dimension: cate_cd {
     group_label: "상품 정보"
-    description: "카테고리 코드"
+    label: "카테고리 코드"
     type: string
     sql: ${TABLE}.cateCd ;;
   }
 
   dimension: goods_cd {
     group_label: "상품 정보"
-    description: "상품 코드"
+    label: "상품 코드"
     type: string
     sql: ${TABLE}.goodsCd ;;
   }
 
   dimension: pluszone_yesno {
     group_label: "상품 정보"
-    description: "플러스존 상품 여부"
+    label: "플러스존 상품 여부"
     type: string
     sql: case when ${cate_cd}='044' then '플러스존 상품'
           else '일반상품'
@@ -157,21 +157,21 @@ view: es_order_goods {
 
   dimension: goods_model_no {
     group_label: "상품 정보"
-    description: "모델명"
+    label: "모델명"
     type: string
     sql: ${TABLE}.goodsModelNo ;;
   }
 
   dimension: goods_nm {
     group_label: "상품 정보"
-    description: "상품명"
+    label: "상품명"
     type: string
     sql: ${TABLE}.goodsNm ;;
   }
 
   dimension: goods_brand {
     group_label: "상품 정보"
-    description: "브랜드"
+    label: "브랜드"
     type: string
     sql: ${es_category_brand.cate_nm} ;;
   }
@@ -184,21 +184,21 @@ view: es_order_goods {
 
   dimension: goods_nm_standard {
     group_label: "상품 정보"
-    description: "기준몰 상품명"
+    label: "기준몰 상품명"
     type: string
     sql: ${TABLE}.goodsNmStandard ;;
   }
 
   dimension: goods_no {
     group_label: "상품 정보"
-    description: "상품 번호"
+    label: "상품 번호"
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
 
   dimension: goods_weight {
     group_label: "상품 정보"
-    description: "상품 무게"
+    label: "상품 무게"
     type: number
     sql: ${TABLE}.goodsWeight ;;
   }
@@ -215,7 +215,7 @@ view: es_order_goods {
   dimension: dc_price_rate_hidden {
     group_label: "참고용"
     hidden: no
-    description: "이익률 산출용 할인률"
+    label: "이익률 산출용 할인률"
     type: number
     sql:
     case when ${es_goods.purchase_no}='100009'
@@ -231,7 +231,7 @@ view: es_order_goods {
   dimension: fee_price {
     group_label: "참고용"
     hidden: no
-    description: "판매대금"
+    label: "판매대금"
     type: number
     sql:
     if((${order_status} in ("p1","g1","d1","d2","s1","b3","b1","b2","b4","r2","r1","e1","e2","e3","e4","e5")) and (${order_type}='일반'),
@@ -294,7 +294,7 @@ view: es_order_goods {
   dimension: pg_price {
     group_label: "참고용"
     hidden: no
-    description: "PG수수료"
+    label: "PG수수료"
     type: number
     sql: if((${order_status} in ("p1","g1","d1","d2","s1","b3","b1","b2","b4","r2","r1","r3","e1","e2","e3","e4","e5")) and (${order_type}='일반'),
           case
@@ -351,21 +351,21 @@ view: es_order_goods {
 
   dimension: fixed_price {
     group_label: "금액 정보"
-    description: "정가"
+    label: "정가"
     type: number
     sql: ${TABLE}.fixedPrice ;;
   }
 
   dimension: goods_price {
     group_label: "금액 정보"
-    description: "상품 가격"
+    label: "상품 가격"
     type: number
     sql: ${TABLE}.goodsPrice ;;
   }
 
   dimension: basic_dc_price {
     group_label: "금액 정보"
-    description: "기본 할인 금액"
+    label: "기본 할인 금액"
     type: number
     sql: case when ${time_sale_fl}='n' then ${fixed_price}-${goods_price}
           else 0
@@ -374,7 +374,7 @@ view: es_order_goods {
 
   dimension: timesale_dc_price {
     group_label: "금액 정보"
-    description: "타임세일 할인 금액"
+    label: "타임세일 할인 금액"
     type: number
     sql: case when ${time_sale_fl}='y' then ${fixed_price}-${goods_price}
         else 0
@@ -383,49 +383,49 @@ view: es_order_goods {
 
   dimension: coupon_goods_dc_price {
     group_label: "금액 정보"
-    description: "상품쿠폰 할인 금액"
+    label: "상품쿠폰 할인 금액"
     type: number
     sql: ${TABLE}.couponGoodsDcPrice ;;
   }
 
   dimension: division_coupon_order_dc_price {
     group_label: "금액 정보"
-    description: "주문할인 금액의 안분된 주문쿠폰"
+    label: "주문할인 금액의 안분된 주문쿠폰"
     type: number
     sql: ${TABLE}.divisionCouponOrderDcPrice ;;
   }
 
   dimension: division_use_deposit {
     group_label: "금액 정보"
-    description: "주문할인 금액의 안분된 예치금"
+    label: "주문할인 금액의 안분된 예치금"
     type: number
     sql: ${TABLE}.divisionUseDeposit ;;
   }
 
   dimension: division_use_mileage {
     group_label: "금액 정보"
-    description: "  주문할인 금액의 안분된 적립금"
+    label: "  주문할인 금액의 안분된 적립금"
     type: number
     sql: ${TABLE}.divisionUseMileage ;;
   }
 
   dimension: enuri {
     group_label: "금액 정보"
-    description: "에누리 할인"
+    label: "에누리 할인"
     type: number
     sql: ${TABLE}.enuri ;;
   }
 
   dimension: goods_dc_price {
     group_label: "금액 정보"
-    description: "상품 할인 금액"
+    label: "상품 할인 금액"
     type: number
     sql: ${TABLE}.goodsDcPrice ;;
   }
 
   dimension: member_dc_price {
     group_label: "금액 정보"
-    description: "회원 할인 금액"
+    label: "회원 할인 금액"
     type: number
     sql: ${TABLE}.memberDcPrice ;;
   }
@@ -433,7 +433,7 @@ view: es_order_goods {
 ############################################################################# 마일리지 적립 관련 정보
   dimension: coupon_goods_mileage {
     group_label: "적립금 정보"
-    description: "상품쿠폰 적립 적립금"
+    label: "상품쿠폰 적립 적립금"
     type: number
     sql: ${TABLE}.couponGoodsMileage ;;
   }
@@ -441,7 +441,7 @@ view: es_order_goods {
 
   dimension: division_coupon_order_mileage {
     group_label: "적립금 정보"
-    description: "주문금액의 안분된 적립금"
+    label: "주문금액의 안분된 적립금"
     type: number
     sql: ${TABLE}.divisionCouponOrderMileage ;;
   }
@@ -449,28 +449,28 @@ view: es_order_goods {
 
   dimension: goods_mileage {
     group_label: "적립금 정보"
-    description: "상품 적립금"
+    label: "상품 적립금"
     type: number
     sql: ${TABLE}.goodsMileage ;;
   }
 
   dimension: member_mileage {
     group_label: "적립금 정보"
-    description: "회원 적립금"
+    label: "회원 적립금"
     type: number
     sql: ${TABLE}.memberMileage ;;
   }
 
   dimension: plus_mileage_fl {
     group_label: "적립금 정보"
-    description: "적립금 지급 여부"
+    label: "적립금 지급 여부"
     type: string
     sql: ${TABLE}.plusMileageFl ;;
   }
 
   dimension: plus_restore_mileage_fl {
     group_label: "적립금 정보"
-    description: "적립금 복원 여부"
+    label: "적립금 복원 여부"
     type: string
     sql: ${TABLE}.plusRestoreMileageFl ;;
   }
@@ -480,7 +480,7 @@ view: es_order_goods {
 
   dimension: goods_brand_tier {
     group_label: "그룹"
-    description: "상품 브랜드 Tier"
+    label: "상품 브랜드 Tier"
     type: string
     sql: case when SUBSTRING_INDEX(${goods_nm}, ' ', 1)='컨버스' THEN '1컨버스'
               when SUBSTRING_INDEX(${goods_nm}, ' ', 1)='엑셀시오르' THEN '2엑셀시오르'
@@ -494,7 +494,7 @@ view: es_order_goods {
 
   dimension: price_tier {
     group_label: "그룹"
-    description: "가격대"
+    label: "가격대"
     type: string
     sql: case when ${fixed_price}<=50000 THEN ' 0-5만원'
                when 50000<${fixed_price} AND ${fixed_price}<=80000 THEN ' 5-8만원'
@@ -509,7 +509,7 @@ view: es_order_goods {
 
   dimension: order_state_tier {
     group_label: "그룹"
-    description: "주문 상태 Tier(실주문/교환/반품/환불/구매이탈/기타)"
+    label: "주문 상태 Tier(실주문/교환/반품/환불/구매이탈/기타)"
     type: string
     sql: case when ${order_status} IN ("p1","g1","d1","d2","s1") THEN '1실주문'
               when ${order_status} IN ("e1","z1","z3","z4", "z5") THEN '2교환'
@@ -523,7 +523,7 @@ view: es_order_goods {
 
   dimension: payment_dt_hour_tier {
     group_label: "그룹"
-    description: "주문 시간 Tier"
+    label: "주문 시간 Tier"
     type: string
     sql: case when ${payment_dt_hour_of_day}>=1 and ${payment_dt_hour_of_day}<=6 then "1새벽(1~6)"
               when ${payment_dt_hour_of_day}>=7 and ${payment_dt_hour_of_day}<=12 then "2오전(7~12)"
@@ -535,7 +535,7 @@ view: es_order_goods {
 
   dimension : coupon_mileage_tier {
     group_label: "그룹"
-    description: "쿠폰/적립금 사용 Tier"
+    label: "쿠폰/적립금 사용 Tier"
     type: string
     sql: case when (${division_coupon_order_dc_price}+${coupon_goods_dc_price})>0 and ${division_use_mileage}>0 THEN '4쿠폰&적립금 사용'
               when (${division_coupon_order_dc_price}+${coupon_goods_dc_price})>0 and ${division_use_mileage}=0  THEN '1쿠폰 사용'
@@ -547,14 +547,14 @@ view: es_order_goods {
 
   dimension: coupon_yesno {
     group_label: "그룹"
-    description: "쿠폰 사용여부"
+    label: "쿠폰 사용여부"
     type: yesno
     sql: (${division_coupon_order_dc_price}+${coupon_goods_dc_price})>0 ;;
   }
 
   dimension: mileage_yesno {
     group_label: "그룹"
-    description: "적립금 사용여부"
+    label: "적립금 사용여부"
     type: yesno
     sql: ${division_use_mileage}>0  ;;
   }
@@ -563,21 +563,21 @@ view: es_order_goods {
 
   dimension: order_delivery_sno {
     group_label: "일련번호"
-    description: "배송테이블 sno"
+    label: "배송테이블 sno"
     type: number
     sql: ${TABLE}.orderDeliverySno ;;
   }
 
   dimension: handle_sno {
     group_label: "일련번호"
-    description: "환불/반품/교환 처리 SNO"
+    label: "환불/반품/교환 처리 SNO"
     type: number
     sql: ${TABLE}.handleSno ;;
   }
 
   dimension: user_handle_sno {
     group_label: "일련번호"
-    description: "사용자 처리 코드 (SNO)"
+    label: "사용자 처리 코드 (SNO)"
     type: number
     sql: ${TABLE}.userHandleSno ;;
   }
@@ -586,14 +586,14 @@ view: es_order_goods {
 
   dimension: date {
     group_label: "날짜 정보"
-    description: "주문 일자+요일"
+    label: "주문 일자+요일"
     type: string
     sql: concat(${payment_dt_date}," (",${day_of_week_hangle},")") ;;
   }
 
   dimension: reporting_period {
     group_label: "날짜 정보"
-    description: "이번달 지난달 비교"
+    label: "이번달 지난달 비교"
     sql: IF(SUBSTRING(DATE_ADD(current_date, INTERVAL -1 DAY),6,2)="01" ,
             CASE WHEN SUBSTRING(${payment_dt_date},1,7) = SUBSTRING(DATE_ADD(current_date, INTERVAL -1 DAY),1,7)
                       and SUBSTRING(${payment_dt_date},9,2) <= SUBSTRING(DATE_ADD(current_date, INTERVAL -1 DAY),9,2)
@@ -631,14 +631,14 @@ view: es_order_goods {
 
   dimension: week_start {
     group_label: "날짜 정보"
-    description: "주 시작일"
+    label: "주 시작일"
     type: string
     sql: DATE_ADD(${payment_dt_date}, INTERVAL (-${payment_dt_day_of_week_index}) DAY) ;;
   }
 
   dimension: week_index {
     group_label: "날짜 정보"
-    description: "W주번호"
+    label: "W주번호"
     type: string
     sql:concat("W",${es_order_goods.payment_dt_week_of_year},"_",${es_order_goods.week_start});;
   }
@@ -652,7 +652,7 @@ view: es_order_goods {
 
   dimension: delivery_day {
     group_label: "날짜 정보"
-    description: "배송완료일 - 결제일"
+    label: "배송완료일 - 결제일"
     type: number
     sql: case when ${order_status} in ("d2","s1") then DATEDIFF(${delivery_complete_dt_date},${payment_dt_date})
           else null
@@ -662,7 +662,7 @@ view: es_order_goods {
 ############################################################################# 날짜2
 
   dimension_group: cancel_dt {
-    description: "취소완료일자"
+    label: "취소완료일자"
     type: time
     timeframes: [
       raw,
@@ -677,7 +677,7 @@ view: es_order_goods {
   }
 
   dimension_group: delivery_complete_dt {
-    description: "배송완료일자"
+    label: "배송완료일자"
     type: time
     timeframes: [
       raw,
@@ -692,7 +692,7 @@ view: es_order_goods {
   }
 
   dimension_group: delivery_dt {
-    description: "배송일자"
+    label: "배송일자"
     type: time
     timeframes: [
       raw,
@@ -707,7 +707,7 @@ view: es_order_goods {
   }
 
   dimension_group: finish_dt {
-    description: "구매확정일자"
+    label: "구매확정일자"
     type: time
     timeframes: [
       raw,
@@ -722,7 +722,7 @@ view: es_order_goods {
   }
 
   dimension_group: payment_dt {
-    description: "입금일자"
+    label: "입금일자"
     type: time
     timeframes: [
       raw,
@@ -762,7 +762,7 @@ view: es_order_goods {
   }
 
   dimension_group: mileage_give_dt {
-    description: "마일리지 지급 유예에 따른 실 지급일"
+    label: "마일리지 지급 유예에 따른 실 지급일"
     type: time
     timeframes: [
       raw,
@@ -778,7 +778,7 @@ view: es_order_goods {
   }
 
   dimension_group: reg_dt {
-    description: "등록일"
+    label: "등록일"
     type: time
     timeframes: [
       raw,
@@ -797,7 +797,7 @@ view: es_order_goods {
   }
 
   dimension_group: mod_dt {
-    description: "수정일"
+    label: "수정일"
     type: time
     timeframes: [
       raw,
@@ -1449,7 +1449,7 @@ view: es_order_goods {
 
   # dimension: cost_price {
   #   hidden: yes
-  #   description: "매입가"
+  #   label: "매입가"
   #   type: number
   #   sql: ${TABLE}.costPrice ;;
   # }
@@ -1475,49 +1475,49 @@ view: es_order_goods {
 
   dimension: minus_deposit_fl {
     hidden: yes
-    description: "마일리지 차감 여부"
+    label: "마일리지 차감 여부"
     type: string
     sql: ${TABLE}.minusDepositFl ;;
   }
 
   dimension: minus_mileage_fl {
     hidden: yes
-    description: "사용 마일리지 차감 여부"
+    label: "사용 마일리지 차감 여부"
     type: string
     sql: ${TABLE}.minusMileageFl ;;
   }
 
   dimension: minus_restore_deposit_fl {
     hidden: yes
-    description: "복원 여부 (적립 적립금)"
+    label: "복원 여부 (적립 적립금)"
     type: string
     sql: ${TABLE}.minusRestoreDepositFl ;;
   }
 
   dimension: minus_restore_mileage_fl {
     hidden: yes
-    description: "사용 마일리지 복원 여부"
+    label: "사용 마일리지 복원 여부"
     type: string
     sql: ${TABLE}.minusRestoreMileageFl ;;
   }
 
   dimension: minus_restore_stock_fl {
     hidden: yes
-    description: "복원 여부 (재고)"
+    label: "복원 여부 (재고)"
     type: string
     sql: ${TABLE}.minusRestoreStockFl ;;
   }
 
   dimension: minus_stock_fl {
     hidden: yes
-    description: "차감 여부 (재고)"
+    label: "차감 여부 (재고)"
     type: string
     sql: ${TABLE}.minusStockFl ;;
   }
 
   dimension: send_sms_fl {
     hidden: yes
-    description: "문자발송여부"
+    label: "문자발송여부"
     type: string
     sql: ${TABLE}.sendSmsFl ;;
   }

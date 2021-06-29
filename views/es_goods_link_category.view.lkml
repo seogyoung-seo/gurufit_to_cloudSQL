@@ -2,13 +2,13 @@ view: es_goods_link_category {
   sql_table_name: gurufit_to_looker.es_goodsLinkCategory ;;
 
   dimension: cate_cd {
-    description: "카테고리 코드"
+    label: "카테고리 코드"
     type: string
     sql: ${TABLE}.cateCd ;;
   }
 
   dimension: top_cate_group {
-    description: "탑 카테고리"
+    label: "탑 카테고리"
     type: string
     sql: case
           when ${cate_cd} ='009' then 'NEW ARRIVAL'
@@ -18,7 +18,7 @@ view: es_goods_link_category {
   }
 
   dimension: goods_cate_group {
-    description: "제품군 카테고리"
+    label: "제품군 카테고리"
     type: string
     sql: case
           when ${cate_cd} ='018' then '스니커즈'
@@ -34,7 +34,7 @@ view: es_goods_link_category {
           else '기타' end ;;
   }
   dimension: goods_no {
-    description: "상품 번호"
+    label: "상품 번호"
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
