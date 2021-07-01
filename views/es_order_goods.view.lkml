@@ -742,25 +742,6 @@ view: es_order_goods {
     sql: if(${TABLE}.paymentDt='0000-00-00',${TABLE}.regDt,${TABLE}.paymentDt) ;;
   }
 
-  dimension_group: payment_dt_test {
-    hidden: yes
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year,
-      month_num,
-      week_of_year,
-      hour_of_day,
-      day_of_week,
-      day_of_week_index
-    ]
-    sql: ${es_order_pay_history.pay_dt};;
-  }
-
   dimension_group: mileage_give_dt {
     label: "마일리지 지급 유예에 따른 실 지급일"
     type: time

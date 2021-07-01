@@ -199,6 +199,7 @@ view: es_member {
     type: string
     sql: ${TABLE}.phone ;;
   }
+
   dimension: sex_fl {
     group_label: "개인정보"
     label: "성별"
@@ -207,7 +208,7 @@ view: es_member {
         when ${TABLE}.sexFl='m' then '1남성'
         when ${TABLE}.sexFl='w' then '2여성'
         else '9알 수 없음' end ;;
-    }
+  }
 
     dimension: age {
       group_label: "개인정보"
@@ -524,13 +525,6 @@ view: es_member {
       type: number
       value_format: "#,##0"
       sql: ${es_order_goods.total_sales_price}/${es_member.mem_distinct_count} ;;
-    }
-
-    measure: login_per_mem {
-      label: "회원 당 로그인 수"
-      type: number
-      value_format: "#,##0.0"
-      sql: ${es_member_login_log.total_login}/${es_member.mem_distinct_count} ;;
     }
 
     measure: goods_per_mem {
