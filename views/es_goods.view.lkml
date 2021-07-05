@@ -1,4 +1,5 @@
 view: es_goods {
+  view_label: "상품"
   sql_table_name: gurufit_to_looker.es_goods ;;
 
   dimension: goods_no {

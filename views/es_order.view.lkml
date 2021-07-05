@@ -1,4 +1,5 @@
 view: es_order {
+  view_label: "주문"
   sql_table_name: gurufit_to_looker.es_order ;;
 
 

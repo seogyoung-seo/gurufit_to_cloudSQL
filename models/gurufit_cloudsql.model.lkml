@@ -34,7 +34,7 @@ explore: order {
   join: es_goods_link_category {
     relationship: many_to_many
     sql_on: ${es_order_goods.goods_no}=${es_goods_link_category.goods_no} ;;
-    view_label: "Es Order Goods"
+    # view_label: "Es Order Goods"
     fields: [es_goods_link_category.top_cate_group,es_goods_link_category.goods_cate_group]
   }
 

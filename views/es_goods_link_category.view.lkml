@@ -1,4 +1,5 @@
 view: es_goods_link_category {
+  view_label: "제품별 카테고리"
   sql_table_name: gurufit_to_looker.es_goodsLinkCategory ;;
 
   dimension: cate_cd {

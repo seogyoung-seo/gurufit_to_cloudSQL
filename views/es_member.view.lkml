@@ -1,4 +1,5 @@
 view: es_member {
+  view_label: "Member"
   sql_table_name: gurufit_to_looker.es_member ;;
 
 #############################################################################주소관련

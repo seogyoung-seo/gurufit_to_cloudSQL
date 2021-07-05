@@ -1,5 +1,5 @@
 view: es_order_goods {
-
+  view_label: "주문별 상품정보"
   sql_table_name: gurufit_to_looker.es_orderGoods ;;
 
 ############################################################################# 주문 정보
