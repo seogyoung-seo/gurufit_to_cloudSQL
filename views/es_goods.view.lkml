@@ -121,11 +121,11 @@ view: es_goods {
 
 ############################################################################# dimension
 
-  # dimension: brand_cd {
-  #   hidden: yes
-  #   type: string
-  #   sql: ${TABLE}.brandCd ;;
-  # }
+  dimension: brand_cd {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.brandCd ;;
+  }
 
   # dimension: cate_cd {
   #   hidden: yes

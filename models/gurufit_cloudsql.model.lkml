@@ -45,7 +45,7 @@ explore: order {
 
   join:es_category_brand{
     relationship: many_to_one
-    sql_on: ${es_order_goods.brand_cd}=${es_category_brand.cate_cd} ;;
+    sql_on: ${es_goods.brand_cd}=${es_category_brand.cate_cd} ;;
 
   }
 }
