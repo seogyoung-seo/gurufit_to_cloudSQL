@@ -13,7 +13,7 @@ persist_with: gurufit_cloudsql_default_datagroup
 #Webhook test용 주석
 #recommended test용 주석
 #required test용 주석
-
+#123123123
 explore: order {
   sql_always_where: ${es_member.mem_no}!=583;;
 
