@@ -1,4 +1,4 @@
-connection: "gurufit-cloudsql"
+connection: "gurufit_mariadb_skillchange"
 
 # include all the views
 include: "/views/*.view"
