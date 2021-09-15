@@ -21,7 +21,7 @@ explore: order {
   join: es_order{
     relationship: many_to_one
     sql_on: ${es_order_goods.order_no}=${es_order.order_no} ;;
-    fields: [es_order.first_sale_fl, es_order.settle_kind, es_order.order_type_fl]
+    fields: [es_order.first_sale_fl, es_order.settle_kind, es_order.order_type_fl, es_order.first_count]
   }
 
   join: es_member {

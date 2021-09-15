@@ -450,6 +450,7 @@ view: es_order {
 
 
     measure: first_count {
+      label: "first_count"
       type: count_distinct
       sql: ${order_no}  ;;
       filters: {
